@@ -2,12 +2,10 @@
     <div id="loginBackground">
         <el-card id="loginCard">
             <h1>登陆</h1>
-            <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px"
-                     >
+            <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px">
                 <!--            用户名 -->
                 <el-form-item label="用户名：" prop="username">
-                    <el-input type="text" v-model="loginForm.username" autocomplete="off" placeholder="默认用户账号：user，默认admin账号：admin"
-                    />
+                    <el-input type="text" v-model="loginForm.username" autocomplete="off" placeholder="默认用户账号：user，默认admin账号：admin"/>
                 </el-form-item>
                 <!--            密码-->
                 <el-form-item label="密码：" prop="password">
@@ -88,7 +86,8 @@
                     title: '点击刷新！'
                 }
             };
-        },
+        }
+        ,
         methods: {
             submitForm() {
                 this.$refs['loginForm'].validate((valid) => {
