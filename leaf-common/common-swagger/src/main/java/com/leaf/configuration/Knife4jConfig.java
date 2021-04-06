@@ -19,6 +19,7 @@ public class Knife4jConfig {
                         //.title("swagger-bootstrap-ui-demo RESTful APIs")
                         .description("# swagger-bootstrap-ui-demo RESTful APIs")
                         .termsOfServiceUrl("http://www.xx.com/")
+                        .title("板蓝根")
                         .contact("1317074979@qq.com")
                         .version("1.0")
                         .build())
