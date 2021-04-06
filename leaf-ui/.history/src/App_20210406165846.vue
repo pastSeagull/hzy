@@ -12,7 +12,8 @@ import NavMenu from "./components/NavMenu";
 export default {
   name: 'app',
   components: {
-    NavMenu
+    NavMenu,
+    HelloWorld
   }
 }
 </script>

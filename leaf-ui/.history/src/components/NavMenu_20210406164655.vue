@@ -1,5 +1,5 @@
 <template>
-    <el-menu :default-active="activeHome" class="el-menu-demo" mode="horizontal" :router="true" @select="handleSelect">
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
         <el-menu-item index="1">首页</el-menu-item>
         <el-submenu index="2">
             <template slot="title">我的世界</template>
@@ -22,19 +22,7 @@
 
 <script>
     export default {
-        name: "NavMenu",
-
-        data(){
-            return{
-                activeHome:'/'
-            };
-        },
-        watch: {
-            $router(){
-                this.setCurrentRoute()
-                window.close.log("$route()"+this.activeHome)
-            }
-        }
+        name: "NavMenu"
     }
 
 </script>
