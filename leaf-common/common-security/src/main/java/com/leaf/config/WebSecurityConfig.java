@@ -4,6 +4,10 @@ package com.leaf.config;
 //import com.leaf.filter.JwtLoginFilter;
 //import com.leaf.service.LoginCountService;
 //import com.leaf.service.VerifyCodeService;
+import com.leaf.filter.JwtAuthenticationFilter;
+import com.leaf.filter.JwtLoginFilter;
+import com.leaf.service.VerifyCodeService;
+import com.leaf.service.login.LoginCountService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -31,9 +35,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     public static String USER = "ROLE_USER";
 //
-//    private final VerifyCodeService verifyCodeService;
-//
-//    private final LoginCountService loginCountService;
+    private final VerifyCodeService verifyCodeService;
+
+    private final LoginCountService loginCountService;
 
     /**
      * 开放访问的请求
@@ -47,10 +51,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             "/images/**"
     };
 
-//    public WebSecurityConfig(VerifyCodeService verifyCodeService, LoginCountService loginCountService) {
-//        this.verifyCodeService = verifyCodeService;
-//        this.loginCountService = loginCountService;
-//    }
+    public WebSecurityConfig(VerifyCodeService verifyCodeService, LoginCountService loginCountService) {
+        this.verifyCodeService = verifyCodeService;
+        this.loginCountService = loginCountService;
+    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -65,7 +69,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 允许跨域访问的 URL
         List<String> allowedOriginsUrl = new ArrayList<>();
         allowedOriginsUrl.add("http://localhost:8080");
-        allowedOriginsUrl.add("http://127.0.0.1:8080");
+//        allowedOriginsUrl.add("http://127.0.0.1:8080");
+
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         // 设置允许跨域访问的 URL
@@ -85,7 +90,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/sys/user/**", "/sys/data", "/sys/logout")
                 // USER 和 ADMIN 都可以访问
                 .hasAnyAuthority(USER, ADMIN)
-                .antMatchers("/sys/admin/**")
+                .antMatchers("/**")
                 // 只有 ADMIN 才可以访问
                 .hasAnyAuthority(ADMIN)
                 .anyRequest()
@@ -93,9 +98,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 // 添加过滤器链,前一个参数过滤器， 后一个参数过滤器添加的地方
                 // 登陆过滤器
-//                .addFilterBefore(new JwtLoginFilter("/api/login", authenticationManager(), verifyCodeService, loginCountService), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtLoginFilter("/api/login", authenticationManager(), verifyCodeService, loginCountService), UsernamePasswordAuthenticationFilter.class)
                 // 请求过滤器
-//                .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(new JwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
                 // 开启跨域
                 .cors()
                 .and()

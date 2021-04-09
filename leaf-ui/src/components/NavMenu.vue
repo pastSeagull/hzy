@@ -1,4 +1,5 @@
 <template>
+    <div>
     <el-menu :default-active="activeHome" class="el-menu-demo" mode="horizontal" :router="true" @select="handleSelect">
         <el-menu-item index="1">首页</el-menu-item>
         <el-submenu index="2">
@@ -13,11 +14,11 @@
                 <el-menu-item index="2-4-3">选项3</el-menu-item>
             </el-submenu>
         </el-submenu>
-        <el-menu-item index="login" >登录</el-menu-item>
-        <el-menu-item index="register">注册</el-menu-item>
+        <el-menu-item class="float_right" index="login" >登录</el-menu-item>
+        <el-menu-item class="float_right" index="register">注册</el-menu-item>
         <!-- <el-button id="logout_button" v-if="showLoginIn() === false" @click="logout">退出</el-button> -->
     </el-menu>
-
+    </div>
 </template>
 
 <script>
@@ -26,8 +27,15 @@
 
         data(){
             return{
-                activeHome:'/'
-            };
+                activeHome:'/',
+            }
+        }
+        ,
+        methods: {
+            handleSelect(key, keyPath) {
+                console.log(key, keyPath);
+                // console.log(key);
+            }
         },
         watch: {
             $router(){
@@ -41,4 +49,7 @@
 
 <style scoped>
 
+    .float_right {
+        float: right;
+    }
 </style>

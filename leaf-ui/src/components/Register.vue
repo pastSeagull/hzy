@@ -1,7 +1,7 @@
 <template>
     <div id="loginBackground">
         <el-card id="loginCard">
-            <h1>登陆</h1>
+            <h1>注册</h1>
             <el-form :model="loginForm" status-icon :rules="rules" ref="loginForm" label-width="100px">
                 <!--            用户名 -->
                 <el-form-item label="用户名：" prop="username">
@@ -40,7 +40,7 @@
     import store from "../store";
 
     export default {
-        name: "Login",
+        name: "Register",
         data() {
             let validatePass = (rule, value, callback) => {
                 if (value === '') {
@@ -101,16 +101,17 @@
                     verifyCode: this.loginForm.verifyCode,
                     rememberMe: this.loginForm.rememberMe
                 };
-
-                fetch(this.SERVER_API_URL + '/login', {
-                    credentials: "include",
-                    headers: {
-                        "Content-Type": "application/json; charset=UTF-8"
-                    },
-                    method: "POST",
-                    body: JSON.stringify(user)
-                }).then(response => response.json())
-                    .then(json => {
+                this.axios
+                    .get(this.SERVER_API_URL + '/login',{
+                        credentials: "include",
+                        headers: {
+                            "Content-Type": "application/json; charset=UTF-8"
+                        },
+                        method: "POST",
+                        body:JSON.stringify(user)
+                    })
+                    .then(response => response.json())
+                    .then(json=>{
                         if (json.status === 200) {
                             // 写入登陆信息
                             store.state.user.username = json.user.username;
@@ -131,7 +132,37 @@
                                 ])
                             });
                         }
-                    });
+                    })
+                // fetch(this.SERVER_API_URL + '/login', {
+                //     credentials: "include",
+                //     headers: {
+                //         "Content-Type": "application/json; charset=UTF-8"
+                //     },
+                //     method: "POST",
+                //     body: JSON.stringify(user)
+                // }).then(response => response.json())
+                //     .then(json => {
+                //         if (json.status === 200) {
+                //             // 写入登陆信息
+                //             store.state.user.username = json.user.username;
+                //             store.state.user.power = json.user.power;
+                //             store.state.user.expirationTime = json.user.expirationTime;
+                //             window.localStorage.setItem('username', json.user.username);
+                //             window.localStorage.setItem('power', json.user.power);
+                //             window.localStorage.setItem('expirationTime', json.user.expirationTime);
+                //
+                //             this.$router.replace('/');
+                //         } else {
+                //             const h = this.$createElement;
+                //             this.$message.error({
+                //                 message: h('div', null, [
+                //                     h('h3', null,'消息：' + json.error),
+                //                     h('p', null, 'path:' + json.path),
+                //                     h('p',  { style: 'color: teal' }, '状态码：' + json.status),
+                //                 ])
+                //             });
+                //         }
+                //     });
             },
             // 清空输入
             resetForm(formName) {

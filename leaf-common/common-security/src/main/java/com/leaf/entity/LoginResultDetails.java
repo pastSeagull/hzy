@@ -1,16 +1,15 @@
 package com.leaf.entity;
 
-//import com.bugaugaoshu.security.model.User;
 
 /**
- * @author Pu Zhiwei {@literal puzhiweipuzhiwei@foxmail.com}
+ * @author
  * create          2019-12-02 18:39
  * 登陆成功后返回用户信息
  */
 public class LoginResultDetails {
     private Integer status;
     private ResultDetails resultDetails;
-//    private User user;
+    private User user;
 
     public ResultDetails getResultDetails() {
         return resultDetails;
@@ -28,11 +27,11 @@ public class LoginResultDetails {
         this.resultDetails = resultDetails;
     }
 //
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
