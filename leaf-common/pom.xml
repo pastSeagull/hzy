@@ -16,6 +16,7 @@
         <module>common-redis</module>
         <module>common-security</module>
         <module>common-swagger</module>
+        <module>common-gennerator</module>
     </modules>
 
 

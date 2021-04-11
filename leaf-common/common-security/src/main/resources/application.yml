@@ -5,3 +5,12 @@ spring:
     allow-bean-definition-overriding: true
   messages:
     basename: basename=message/SpringSecurityMessage
+
+jwt:
+  tokenHeader: cc
+  secret: hzy
+  expiration: 604800
+  tokenHead: bb
+logging:
+  level:
+   com.leaf.server: debug
