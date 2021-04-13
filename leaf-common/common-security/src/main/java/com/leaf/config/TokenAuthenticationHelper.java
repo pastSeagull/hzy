@@ -1,9 +1,9 @@
 package com.leaf.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.leaf.entity.LoginDetails;
-import com.leaf.entity.LoginResultDetails;
-import com.leaf.entity.ResultDetails;
+import com.leaf.details.LoginDetails;
+import com.leaf.details.LoginResultDetails;
+import com.leaf.details.ResultDetails;
 import com.leaf.entity.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

@@ -1,5 +1,6 @@
 package com.leaf.util;
 
+import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
@@ -10,9 +11,10 @@ import java.util.Random;
 
 /**
  * @author
- * create          2019-11-30 14:33
+ * 验证码工具类
  */
 @Service
+@Data
 public class VerifyCodeUtil {
     /**
      * 常用颜色
@@ -179,30 +181,5 @@ public class VerifyCodeUtil {
                 g.draw(shape);
             }
         }
-    }
-
-
-    public int getLen() {
-        return len;
-    }
-
-    public void setLen(int len) {
-        this.len = len;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
     }
 }

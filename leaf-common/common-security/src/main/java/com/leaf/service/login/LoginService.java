@@ -1,7 +1,7 @@
 package com.leaf.service.login;
 
 
-import com.leaf.entity.LoginResultDetails;
+import com.leaf.details.LoginResultDetails;
 
 /**
  * @author Pu Zhiwei {@literal puzhiweipuzhiwei@foxmail.com}

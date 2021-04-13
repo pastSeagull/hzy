@@ -1,7 +1,7 @@
 package com.leaf.service.login.Imp;
 
-import com.leaf.entity.LoginResultDetails;
-import com.leaf.entity.ResultDetails;
+import com.leaf.details.LoginResultDetails;
+import com.leaf.details.ResultDetails;
 import com.leaf.entity.User;
 import com.leaf.service.login.LoginService;
 import io.jsonwebtoken.Claims;

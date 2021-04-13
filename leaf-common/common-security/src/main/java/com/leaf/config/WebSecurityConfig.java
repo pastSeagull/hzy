@@ -69,14 +69,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // 允许跨域访问的 URL
         List<String> allowedOriginsUrl = new ArrayList<>();
         allowedOriginsUrl.add("http://localhost:8080");
-//        allowedOriginsUrl.add("http://127.0.0.1:8080");
-
+        allowedOriginsUrl.add("http://127.0.0.1:8080");
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         // 设置允许跨域访问的 URL
         config.setAllowedOrigins(allowedOriginsUrl);
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
+        config.addAllowedHeader(CorsConfiguration.ALL);
+        config.addAllowedMethod(CorsConfiguration.ALL);
+        config.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", config);
         return source;

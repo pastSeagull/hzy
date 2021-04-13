@@ -2,8 +2,8 @@ package com.leaf.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.leaf.config.TokenAuthenticationHelper;
-import com.leaf.entity.ErrorDetails;
-import com.leaf.entity.LoginDetails;
+import com.leaf.details.ErrorDetails;
+import com.leaf.details.LoginDetails;
 import com.leaf.entity.User;
 import com.leaf.service.VerifyCodeService;
 import com.leaf.service.login.LoginCountService;

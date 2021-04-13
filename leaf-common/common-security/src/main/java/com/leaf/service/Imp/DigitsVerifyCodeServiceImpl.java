@@ -1,9 +1,9 @@
 package com.leaf.service.Imp;
 
-import com.leaf.entity.VerifyFailedException;
+
+import com.leaf.exception.VerifyFailedException;
 import com.leaf.repository.VerifyCodeRepository;
 import com.leaf.service.GenerateImageService;
-import com.leaf.service.SendMessageService;
 import com.leaf.service.VerifyCodeService;
 import com.leaf.util.VerifyCodeUtil;
 import org.springframework.stereotype.Service;
@@ -24,16 +24,14 @@ public class DigitsVerifyCodeServiceImpl implements VerifyCodeService {
 
     private final GenerateImageService generateImageService;
 
-    private final SendMessageService sendMessageService;
 
     private final VerifyCodeUtil verifyCodeUtil;
 
     private static final long VERIFY_CODE_EXPIRE_TIMEOUT = 60000L;
 
-    public DigitsVerifyCodeServiceImpl(VerifyCodeRepository verifyCodeRepository, GenerateImageService generateImageService, SendMessageService sendMessageService, VerifyCodeUtil verifyCodeUtil) {
+    public DigitsVerifyCodeServiceImpl(VerifyCodeRepository verifyCodeRepository, GenerateImageService generateImageService, VerifyCodeUtil verifyCodeUtil) {
         this.verifyCodeRepository = verifyCodeRepository;
         this.generateImageService = generateImageService;
-        this.sendMessageService = sendMessageService;
         this.verifyCodeUtil = verifyCodeUtil;
     }
 
@@ -55,7 +53,6 @@ public class DigitsVerifyCodeServiceImpl implements VerifyCodeService {
         String verifyCode = randomDigitString(verifyCodeUtil.getLen());
         String verifyCodeWithTimestamp = appendTimestamp(verifyCode);
         verifyCodeRepository.save(key, verifyCodeWithTimestamp);
-        sendMessageService.send(key, verifyCode);
     }
 
     @Override
