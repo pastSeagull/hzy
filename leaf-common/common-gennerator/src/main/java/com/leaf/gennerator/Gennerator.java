@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class Gennerator {
             System.out.println(help.toString());
             if (scanner.hasNext()) {
                 String ipt = scanner.next();
-                if (StringUtils.isNotBlank(ipt)) {
+                if (StringUtils.isEmpty(ipt)) {
                     return ipt;
                 }
             }

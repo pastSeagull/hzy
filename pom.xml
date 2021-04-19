@@ -23,70 +23,84 @@
         <java.version>1.8</java.version>
         <common-pool.version>2.6.2</common-pool.version>
         <commons.io.version>2.5</commons.io.version>
+        <spring-cloud.version>Hoxton.SR10</spring-cloud.version>
+        <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
+        <spring-boot.version>2.4.4</spring-boot.version>
     </properties>
-    <dependencies>
+    <dependencyManagement>
+        <dependencies>
+            <!-- SpringCloud 微服务 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- SpringCloud Alibaba 微服务 -->
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!--        io常用工具类-->
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons.io.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+            </dependency>
 
-<!--        io常用工具类-->
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commons.io.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
+            <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <scope>provided</scope>
+            </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-Starter-web</artifactId>
+            </dependency>
+            <!--        公共资源池-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-pool2</artifactId>
+                <version>${common-pool.version}</version>
+            </dependency>
 
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-Starter-web</artifactId>
-            <version>2.4.4</version>
-        </dependency>
 
-<!--        接口模块-->
-        <dependency>
-            <groupId>com.leaf</groupId>
-            <artifactId>common-swagger</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-<!--        日志模块-->
-
-        <dependency>
-            <groupId>com.leaf</groupId>
-            <artifactId>common-log</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-<!--        安全模块-->
-        <dependency>
-            <groupId>com.leaf</groupId>
-            <artifactId>common-security</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-<!--        缓存模块-->
-        <dependency>
-            <groupId>com.leaf</groupId>
-            <artifactId>common-redis</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <!--        公共资源池-->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-pool2</artifactId>
-            <version>${common-pool.version}</version>
-        </dependency>
-    </dependencies>
+            <!--        接口模块-->
+            <dependency>
+                <groupId>com.leaf</groupId>
+                <artifactId>common-swagger</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <!--        日志模块-->
+            <dependency>
+                <groupId>com.leaf</groupId>
+                <artifactId>common-log</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <!--        安全模块-->
+            <dependency>
+                <groupId>com.leaf</groupId>
+                <artifactId>common-security</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <!--        缓存模块-->
+            <dependency>
+                <groupId>com.leaf</groupId>
+                <artifactId>common-redis</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>
@@ -96,5 +110,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
