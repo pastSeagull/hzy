@@ -1,14 +1,13 @@
 package com.leaf.filter;
 
-
-//import com.leaf.config.TokenAuthenticationHelper;
-import com.leaf.config.TokenAuthenticationHelper;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureException;
-import io.jsonwebtoken.UnsupportedJwtException;
-import org.springframework.security.core.Authentication;
+import cn.hutool.core.util.StrUtil;
+import com.leaf.entity.AccountDetails;
+import com.leaf.utils.JwtTokenUtil;
+import io.jsonwebtoken.JwtException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -17,23 +16,29 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
-/**
- * jwt 对请求的验证
- */
+@Component
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
+    @Autowired
+    private JwtTokenUtil jwtUtils;
+
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
-        try {
-            Authentication authentication = TokenAuthenticationHelper.getAuthentication(httpServletRequest);
 
-            // 对用 token 获取到的用户进行校验
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        String token=httpServletRequest.getHeader(jwtUtils.getHeader());
+        if(StrUtil.isBlankOrUndefined(token)){
             filterChain.doFilter(httpServletRequest, httpServletResponse);
-        } catch (ExpiredJwtException | UnsupportedJwtException | MalformedJwtException |
-                SignatureException | IllegalArgumentException e) {
-            httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token expired，登陆已过期");
+            return;
         }
+        String username = jwtUtils.getUsernameFromToken(token);
+        if (jwtUtils.isTokenExpired(username)) {
+            throw new JwtException("token已过期");
+        }
+        UsernamePasswordAuthenticationToken authentication
+                = new UsernamePasswordAuthenticationToken(username, null,new AccountDetails().getAuthorities());
+
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
 }

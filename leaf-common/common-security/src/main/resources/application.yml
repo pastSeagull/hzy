@@ -1,16 +1,21 @@
 server:
   port: 9091
-spring:
-  main:
-    allow-bean-definition-overriding: true
-  messages:
-    basename: basename=message/SpringSecurityMessage
-
-jwt:
-  tokenHeader: cc
-  secret: hzy
-  expiration: 604800
-  tokenHead: bb
-logging:
-  level:
-   com.leaf.server: debug
+#spring:
+#  main:
+#    allow-bean-definition-overriding: true
+#  messages:
+#    basename: basename=message/SpringSecurityMessage
+#
+night:
+  jwt:
+    Header: Authorization
+    secret: hzy333
+    expireDate: 604800
+##logging:
+##  level:
+#spring:
+#  security:
+#    user:
+#      name: user
+#      password: 123456
+##   com.leaf.server: debug

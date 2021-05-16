@@ -11,11 +11,7 @@
 
     <artifactId>leaf-service</artifactId>
     <dependencies>
-        <dependency>
-            <groupId>com.leaf</groupId>
-            <artifactId>common-gennerator</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+
     </dependencies>
 
 
