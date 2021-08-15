@@ -7,9 +7,14 @@ import { defineComponent } from 'vue'
 
 export default defineComponent({
   name: 'Header',
-  setup() {
-
+  setup() {},
+  data() {
+    return {
+      searchPool: []
+    }
   },
+  watch: {},
+  mounted() {}
 })
 </script>
 

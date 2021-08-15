@@ -33,7 +33,6 @@
 import { defineComponent } from 'vue'
 import { ElMessage } from 'element-plus'
 import { login, getUserInfo } from '../../utils/api'
-// import axios from 'axios'
 
 export default defineComponent({
   name: 'Login',
@@ -53,7 +52,7 @@ export default defineComponent({
     }
   },
   methods: {
-    async submitForm(formName: Object) {
+    submitForm(formName: Object) {
       this.$refs[formName].validate((valid: Boolean) => {
         if (valid) {
           // 不优雅

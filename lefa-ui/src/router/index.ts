@@ -4,7 +4,7 @@ import { ElMessage } from 'element-plus'
 // import Home from '@/views/home.vue'
 // import Login from '@/views/login/index.vue'
 
-const routes: Array<RouteRecordRaw> = [
+export const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Home',

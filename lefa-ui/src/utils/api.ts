@@ -9,3 +9,7 @@ export const login = (data: Object) => {
 export const getUserInfo = () => {
   return axios.post('/getUserInfo')
 }
+
+export const getRouter = () => {
+  return axios.get('../../router.json')
+}
